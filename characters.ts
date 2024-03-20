@@ -1,16 +1,16 @@
-class Character {
-    type = '';
-    pv = 0;
-    mana = 0;
-    physical_Attack = 0;
-    physical_Defense = 0;
-    magical_Attack = 0;
-    magical_Defense = 0;
-    attack_speed = 0;
-    special_Capacity = '';
+export default class Character {
+    name : string;
+    pv : number;
+    mana : number;
+    physical_Attack : number;
+    physical_Defense : number;
+    magical_Attack : number;
+    magical_Defense : number;
+    attack_speed : number;
+    special_Capacity : string;
 
-    constructor(type: string, pv: number, mana: number, physical_Attack: number, physical_Defense: number, magical_Attack:number, magical_Defense:number, attack_speed: number, special_Capacity:string) {
-        this.type = type;
+    constructor(name: string, pv: number, mana: number, physical_Attack: number, physical_Defense: number, magical_Attack:number, magical_Defense:number, attack_speed: number, special_Capacity:string) {
+        this.name = name;
         this.pv = pv;
         this.mana = mana;
         this.physical_Attack = physical_Attack;
