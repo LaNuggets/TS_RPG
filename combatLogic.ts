@@ -1,5 +1,5 @@
-import Character from "./characters.ts"
-import Enemy from "./enemis.ts"
+import Character from "./Characters.ts"
+import Enemy from "./Enemis.ts"
 
 const warrior = new Character('Warrior', 100,20,10,7,1,1,5,'wrath_Of_God');
 const mage = new Character('Mage', 70,100,1,1,10,7,5,'firebolt');

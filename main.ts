@@ -1,6 +1,6 @@
-import Character from "./characters.ts"
-import Enemy from "./enemis.ts"
-
+import Character from "./Characters.ts"
+import Enemy from "./Enemis.ts"
+import Item from "./Items.ts"
 
 
 const warrior = new Character('Warrior', 100,20,10,7,1,1,5,'wrath_Of_God');
@@ -23,7 +23,7 @@ for(const char of characters) {
     console.log(count, '->',char.name);
 }
 while (chosenCharacter.length !== 3) {
-    let playerResponse = parseInt(prompt('Type the number of character you want ->'))
+    const playerResponse = parseInt(prompt('Type the number of character you want ->'))
     console.log(`you chose the ${characters[playerResponse-1].name}`)
     chosenCharacter.push(characters[playerResponse-1].name)  
 }

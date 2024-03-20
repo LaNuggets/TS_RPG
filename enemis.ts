@@ -18,8 +18,8 @@
     }
 }
 
-// const snake = new Enemy('Snake', 100,7,7,3,3,5);
-// const ogre = new Enemy('Ogre', 100,7,7,3,3,5);
-// const goblin = new Enemy('Goblin', 100,7,7,3,3,5);
-// const orque = new Enemy('Orque', 100,7,7,3,3,5);
-// const spider = new Enemy('Spider', 100,7,7,3,3,5);
+const snake = new Enemy('Snake', 100,7,7,3,3,5);
+const ogre = new Enemy('Ogre', 100,7,7,3,3,5);
+const goblin = new Enemy('Goblin', 100,7,7,3,3,5);
+const orque = new Enemy('Orque', 100,7,7,3,3,5);
+const spider = new Enemy('Spider', 100,7,7,3,3,5);
