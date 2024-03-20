@@ -1,6 +1,6 @@
 import Character from "./characters.ts"
 import Enemy from "./enemis.ts"
-
+import Item from "./items.ts"
 
 
 const warrior = new Character('Warrior', 100,20,10,7,1,1,5,'wrath_Of_God');
