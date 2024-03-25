@@ -50,7 +50,7 @@ export default class Character {
 // characterChoice(){
 //     console.log("welcome to the this TypeScript RPG !");
 //     console.log("Rules...");
-//     console.log("Firsting first build your team by choosing 3 characters !");
+//     console.log("First thing first build your team by choosing 3 characters !");
 //     let count= 0;
 //     for(const char of characters) {
 //         count++;
