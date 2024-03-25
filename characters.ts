@@ -1,4 +1,4 @@
-export default class Character {
+export default class Characters {
     race : boolean;
     name : string;
     pvMax : number;
@@ -12,7 +12,11 @@ export default class Character {
     special_Capacity : string;
     res : boolean;
 
-    constructor(race : boolean,name: string, pvMax: number,pvCurrent : number, mana: number, physical_Attack: number, physical_Defense: number, magical_Attack:number, magical_Defense:number, attack_speed: number, special_Capacity:string, res : boolean) {
+    constructor(race : boolean,name: string, pvMax: number,pvCurrent : number, mana: number, 
+    physical_Attack: number,physical_Defense: number, magical_Attack:number, magical_Defense:number, 
+    attack_speed: number, special_Capacity:string, res : boolean) 
+    {
+
         this.race = race;
         this.name = name;
         this.pvMax = pvMax;
@@ -31,20 +35,21 @@ export default class Character {
 
 }
 
-//todo ally
-// const warrior = new Character('Warrior', 100,20,10,7,1,1,5,'wrath_Of_God');
-// const mage = new Character('Mage', 70,100,1,1,10,7,5,'firebolt');
-// const paladin = new Character('Paladin', 110,50,5,7,5,7,3,'protection');
-// const barbar = new Character('Barbar', 100,10,10,5,1,1,8,'destruction');
-// const priest = new Character('Priest', 60,100,4,6,5,6,1,'healing');
-// const thief = new Character('Thief', 80,70,7,4,7,4,10,'theft');
-//! ennemy
-// const snake = new Character('Snake', 100,7,7,3,3,5);
-// const ogre = new Character('Ogre', 100,7,7,3,3,5);
-// const goblin = new Character('Goblin', 100,7,7,3,3,5);
-// const orque = new Character('Orque', 100,7,7,3,3,5);
-// const spider = new Character('Spider', 100,7,7,3,3,5);
+const warrior = new Characters(true,'Warrior', 100,100,20,10,7,1,1,5,'wrath_Of_God',true
+);
+const mage = new Characters(true,'Mage', 70,70,100,1,1,10,7,5,'firebolt', true);
+const paladin = new Characters(true,'Paladin', 110,110,50,5,7,5,7,3,'protection',true);
+const barbar = new Characters(true,'Barbar', 100,100,10,10,5,1,1,8,'destruction',true);
+const priest = new Characters(true,'Priest',60,60,100,4,6,5,6,1,'healing',true);
+const thief = new Characters(true,'Thief', 80,80,70,7,4,7,4,10,'theft',true);
 
+
+const snake = new Characters(false,'Snake', 100,100,7,7,3,3,5,8,'',true);
+const ogre = new Characters(false,'Ogre', 100,100,7,7,3,3,5,7,'',true);
+const goblin = new Characters(false,'Goblin', 100,100,7,7,3,3,5,5,'',true);
+const orque = new Characters(false,'Orque', 100,100,7,7,3,3,5,5,'',true);
+const spider = new Characters(false,'Spider', 100,100,7,7,3,3,5,8,'',true);
+const arabe = new Characters(false,"Merhmoud",1000,1000,250,10,10,10,10,10,'allah uakbar',true)
 
 //todo
 // characterChoice(){
