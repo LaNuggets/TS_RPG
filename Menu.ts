@@ -1,12 +1,5 @@
 import Character from "./Character.ts";
 
-const warrior = new Character(true, 'Warrior', 100, 100, 20, 10, 7, 1, 1, 5, 'wrath_Of_God', true);
-const mage = new Character(true, 'Mage', 70, 70, 100, 1, 1, 10, 7, 5, 'firebolt', true);
-const paladin = new Character(true, 'Paladin', 110, 110, 50, 5, 7, 5, 7, 3, 'protection', true);
-const barbar = new Character(true, 'Barbar', 100, 100, 10, 10, 5, 1, 1, 8, 'destruction', true);
-const priest = new Character(true, 'Priest', 60, 60, 100, 4, 6, 5, 6, 1, 'healing', true);
-const thief = new Character(true, 'Thief', 80, 80, 70, 7, 4, 7, 4, 10, 'theft', true);
-
 export default class Menu {
     
    
