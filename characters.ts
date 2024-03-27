@@ -19,6 +19,8 @@ export default class Character {
         this.name = name;
         this.maxHp = maxHp;
         this.currentHp = currentHp;
+        this.maxHp = maxHp;
+        this.currentHp = currentHp;
         this.mana = mana;
         this.physical_Attack = physical_Attack;
         this.physical_Defense = physical_Defense;

@@ -1,0 +1,15 @@
+class GameManager {
+     
+
+
+
+
+hajime(){
+    
+}
+
+
+
+
+
+}
