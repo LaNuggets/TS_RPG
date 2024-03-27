@@ -1,4 +1,4 @@
-import Items from '../Items.ts'
+import Item from '../Items.ts'
 
 export default class Ether extends Item {
     constructor() {
