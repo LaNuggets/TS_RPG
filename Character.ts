@@ -30,28 +30,7 @@ export default class Character {
         this.res = res;
     }
 
-    characterChoice() {
-        const characters: Character[] = [warrior, mage, paladin, barbar, priest, thief];
-        const chosenCharacters = [];
-
-        console.log("Welcome to this TypeScript RPG!");
-        console.log("Rules...");
-        console.log("First, build your team by choosing 3 characters!");
-
-        let count = 0;
-        for (const char of characters) {
-            count++;
-            console.log(count, '->', char.name);
-        }
-
-        while (chosenCharacters.length !== 3) {
-            const playerResponse = parseInt(prompt('Type the number of the character you want ->'));
-            console.log(`You chose ${characters[playerResponse - 1].name}`);
-            chosenCharacters.push(characters[playerResponse - 1].name);
-        }
-
-        console.log(`This is your team:\n -${chosenCharacters.join('\n -')}`);
-    }
+   
 }
 
 const warrior = new Character(true, 'Warrior', 100, 100, 20, 10, 7, 1, 1, 5, 'wrath_Of_God', true);
@@ -69,5 +48,5 @@ const spider = new Character(false, 'Spider', 100, 100, 7, 7, 3, 3, 5, 8, '', tr
 const arabe = new Character(false, "Merhmoud", 1000, 1000, 250, 10, 10, 10, 10, 10, 'allah uakbar', true);
 
 const player = new Character(true, 'Player', 0, 0, 0, 0, 0, 0, 0, 0, '', true);
-player.characterChoice();
+
  
