@@ -8,9 +8,10 @@ export default class Fight {
     }
 
     teamFight() {
-        const fighters = Character.name
-        console.log(`The two team to figths are ${fighters}`)   
+     
     }
+
+
 
     orderFight(): Character[] {
         const arr : Character[] = []
