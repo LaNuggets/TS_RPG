@@ -1,10 +1,22 @@
 import Character from "./Character.ts";
+import Warrior from './Heros/Warrior.ts'
+import Mage from './Heros/Mage.ts'
+import Paladin from './Heros/Paladin.ts'
+import Priest from './Heros/Priest.ts'
+import Thief from './Heros/Thief.ts'
+import Barbar from './Heros/Barbar.ts'
 
 export default class Menu {
-    
-   
+
 characterChoice() {
-        const characters: Character[] = [warrior, mage, paladin, barbar, priest, thief];
+        const warrior = new Warrior()
+        const mage = new Mage()
+        const paladin = new Paladin()
+        const priest = new Priest()
+        const thief = new Thief()
+        const barbar = new Barbar()
+
+        const characters: Character[] = [warrior, mage,paladin,priest,thief,barbar]
         const chosenCharacters : string[] = [];
         
 
@@ -36,7 +48,6 @@ characterChoice() {
 
         const playerResponse = 5;
 
-
         while (playerResponse !== 1 && 3) {
         const playerResponse = parseInt(prompt("Type the number you want ?"));
         if(playerResponse == 1){
@@ -51,13 +62,7 @@ characterChoice() {
     }
     
     }
-
-    
-
 }
-
-
-
 
 const menu = new Menu();
 //Lancez le jeu en démarrant le menu
