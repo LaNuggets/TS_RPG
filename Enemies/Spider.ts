@@ -1,4 +1,4 @@
-import Character from '../Characters.ts'
+import Character from "../Character.ts"
 
 export default class Spider extends Character {
     
