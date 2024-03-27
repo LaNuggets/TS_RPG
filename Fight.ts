@@ -1,4 +1,4 @@
-import Character from "./Characters.ts";
+import Character from "./Character.ts";
 
 export default class Fight {
     fighters : Character[];
@@ -10,7 +10,6 @@ export default class Fight {
     teamFight() {
      
     }
-
 
     orderFight(): Character[] {
         const arr : Character[] = []
