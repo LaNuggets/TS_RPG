@@ -1,4 +1,5 @@
 export default class Character {
+    team : boolean;
     name : string;
     maxHp : number;
     currentHp : number;
@@ -11,10 +12,11 @@ export default class Character {
     special_Capacity : string;
     res : boolean;
 
-    constructor(name: string, maxHp: number,currentHp : number, mana: number, 
+    constructor(team : boolean, name: string, maxHp: number,currentHp : number, mana: number, 
     physical_Attack: number,physical_Defense: number, magical_Attack:number, magical_Defense:number, 
     attack_speed: number, special_Capacity:string, res : boolean) 
     {
+        this.team = team;
         this.name = name;
         this.maxHp = maxHp;
         this.currentHp = currentHp;

@@ -11,7 +11,6 @@ export default class Fight {
      
     }
 
-
     orderFight(): Character[] {
         const arr : Character[] = []
         const sortedFighters = this.fighters.slice().sort((a, b) => b.attack_speed - a.attack_speed);
