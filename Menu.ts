@@ -64,12 +64,9 @@ characterChoice() {
         }
 
     }
-    
     }
 }
 
 const menu = new Menu();
 //Lancez le jeu en démarrant le menu
 menu.display(); // appelle la méthode display pour afficher le menu
-
-

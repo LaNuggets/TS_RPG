@@ -28,9 +28,9 @@ export default class Character {
         this.res = res;
     }
     gainHp(hpGain: number): number{
-        return this.currentHp + hpGain
+        return this.currentHp += hpGain
     }
     loseHp(hpLose: number): number{
-        return this.currentHp - hpLose
+        return this.currentHp -= hpLose
     }
 }
