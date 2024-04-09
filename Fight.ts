@@ -24,18 +24,26 @@ export default class Fight {
         let resp : string | null = null;
         const alliesFigthers = [];
         const enemiesFigthers = [];
+        playerTurn[3].res = false;
          for(let b=0;b<playerTurn.length;b++){
-            if(playerTurn[b].team===true){
+            if(playerTurn[b].team===true && playerTurn[b].res === true){
                 alliesFigthers.push(playerTurn[b])
-            } else if(playerTurn[b].team===false){
+            } else if(playerTurn[b].team===false && playerTurn[b].res === true){
                 enemiesFigthers.push(playerTurn[b])
             }
          }
          for(let i=0; i < playerTurn.length; i++){
+            if(playerTurn[i].res === false){
+                if(playerTurn[i].team=== true){
+                console.log(`\x1b[32m${playerTurn[i].name}\x1b[0m is dead, he cannot do anything.`)
+                }else if (playerTurn[i].team=== false){
+                    console.log(`\x1b[31m${playerTurn[i].name}\x1b[0m is dead, he cannot do anything.`)
+                }
+            }else{
             if(playerTurn[i].team === false){
                 playerTurn[i].monsterTurn(alliesFigthers)
             }else{
-            console.log(`This is your turn \x1b[32m${playerTurn[i].name}\x1b[0m`);
+            console.log(`\nThis is your turn \x1b[32m${playerTurn[i].name}\x1b[0m`);
             console.log('What do you want to do ?');
             console.log(' 1- Attack \n 2- Special Attack \n 3- Use Item');
             const response = prompt('Choose a number:')
@@ -44,7 +52,7 @@ export default class Fight {
                     clear(true)
                     console.log(`You are the \x1b[32m${playerTurn[i].name}\x1b[0m`)
                     for(let j=0; j <enemiesFigthers.length; j++){
-                        console.log(j+1+`- ${enemiesFigthers[j].name}`);
+                        console.log(j+1+`- \x1b[31m${enemiesFigthers[j].name}\x1b[0m`);
                     }
                     while(!(resp == '1' || resp == '2' || resp == '3')){
                         resp = prompt('Choose your target number !');
@@ -52,13 +60,14 @@ export default class Fight {
                             resp = prompt('Choose a correct number !');
                         } 
                     }
-                    console.log(playerTurn[parseInt(resp)-1].loseHp(playerTurn[i].physical_Attack - playerTurn[parseInt(resp)-1].physical_Defense))
-                    console.log( playerTurn[parseInt(resp)-1].name)
+                    clear(true);
+                    playerTurn[parseInt(resp)-1].loseHp(playerTurn[i].physical_Attack)
+                    console.log(`The \x1b[32m${playerTurn[i].name}\x1b[0m damage the \x1b[31m${playerTurn[parseInt(resp)-1].name}\x1b[0m, he lose \x1b[38;5;208m${playerTurn[i].physical_Attack}\x1b[0m Hp, he has \x1b[38;5;208m${playerTurn[parseInt(resp)-1].currentHp}\x1b[0m Hp left.\n`)
                     resp = null
                     break;
                 }
                     case "2":
-                        console.log(`Your special attack is \x1b[31m${playerTurn[i].special_Capacity}\x1b[0m`)
+                        console.log(`The \x1b[32m${playerTurn[i].name}\x1b[0m use is Special attack \x1b[35m${playerTurn[i].special_Capacity}\x1b[0m !`)
 
                     break;
                     case "3":
@@ -67,6 +76,7 @@ export default class Fight {
             }
          }
         }
+    }
     }
 
     orderFight(): Character[] {

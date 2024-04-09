@@ -46,11 +46,12 @@ export default class Character {
                         }
                     }
                     alliesFigthers[minimumHpIndex].loseHp(this.physical_Attack);
-                    console.log(`The ${this.name} has attack the ${alliesFigthers[minimumHpIndex].name}, he has left ${alliesFigthers[minimumHpIndex].currentHp} Hp`);
+                    console.log(`The \x1b[31m${this.name}\x1b[0m has attack the \x1b[32m${alliesFigthers[minimumHpIndex].name}\x1b[0m, \x1b[32m${alliesFigthers[minimumHpIndex].name}\x1b[0m has lose \x1b[38;5;208m${this.physical_Attack}\x1b[0m Hp, he has \x1b[38;5;208m${alliesFigthers[minimumHpIndex].currentHp}\x1b[0m Hp left.\n`);
+
                 }else{
                     const random = Math.floor(Math.random() * alliesFigthers.length);
                     alliesFigthers[random].loseHp(this.physical_Attack);
-                    console.log(`The ${this.name} has attack the ${alliesFigthers[random].name}, he has left ${alliesFigthers[random].currentHp} Hp`);
+                    console.log(`The \x1b[31m${this.name}\x1b[0m has attack the \x1b[32m${alliesFigthers[random].name}\x1b[0m, \x1b[32m${alliesFigthers[random].name}\x1b[0m has lose \x1b[38;5;208m${this.physical_Attack}\x1b[0m Hp, he has \x1b[38;5;208m${alliesFigthers[random].currentHp}\x1b[0m Hp left.\n`);
                 }
     }
 }
