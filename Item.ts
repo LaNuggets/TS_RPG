@@ -59,4 +59,8 @@ export default class Item {
             return console.log(`The \x1b[36m${this.name}\x1b[0m has revive \x1b[32m${target.name}\x1b[0m whit all of this Hp. Is Hp is now \x1b[38;5;208m${target.currentHp}\x1b[0m`)
         }
     }
+    addItem(itemsInInventory : Item[]){
+        itemsInInventory.push(this);
+        console.log(`You add ${this.name} in your inventory !`)
+    }
 }
