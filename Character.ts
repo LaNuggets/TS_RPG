@@ -93,11 +93,12 @@ export default class Character {
 
         console.log(`Here are the items you have !`);
         for(let i=0; i<itemsInInventory.length;i++){
-            console.log(i+1+'- \x1b[36m'+itemsInInventory[i].name+'\x1b[0m'+` Its capacity is \x1b[34m${itemsInInventory[i].capacity}\x1b[0m`);
+            console.log(i+1+'- \x1b[36m'+itemsInInventory[i].name+'\x1b[0m'+` Its capacity is \x1b[34m${itemsInInventory[i].capacity}.\x1b[0m`);
         }
         for(let j=0;j<itemsInInventory.length;j++){
             itemsList.push(j+1)
         }
+        resp = prompt('Choose the item you want to use !')
         while(true){
             if(resp === null|| !itemsList.includes(parseInt(resp))){
                 resp = prompt('Please choose a correcte number !')
@@ -105,12 +106,12 @@ export default class Character {
                 break;
             }
         }
-        itemsInInventory.splice(parseInt(resp),1)
+
         clear(true);
         console.log(`You use \x1b[36m${itemsInInventory[parseInt(resp)-1].name}\x1b[0m`);
         console.log('On Which character you want to use it ?');
         for(let i=0;i<alliesFigthers.length;i++){
-            console.log(`${i+1}- ${alliesFigthers[i].name}`)
+            console.log(`${i+1}- \x1b[32m${alliesFigthers[i].name}\x1b[0m`)
         }
         secondeResp=prompt('On Which character you want to use it ?');
         for(let k=0;k<alliesFigthers.length;k++){
@@ -118,11 +119,12 @@ export default class Character {
         }
         while(true){
             if(secondeResp === null|| !corrrectNumber.includes(parseInt(secondeResp))){
-                secondeResp = prompt('Please choose a correcte number !')
+                secondeResp = prompt('Please choose a correct number !')
             } else{
                 break;
             }
         }
         itemsInInventory[parseInt(resp)-1].usingItem(alliesFigthers[parseInt(secondeResp)-1]);
+        itemsInInventory.splice((parseInt(resp)-1),1);
     }
 }
