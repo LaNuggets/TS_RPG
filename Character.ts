@@ -21,6 +21,8 @@ export default class Character {
     special_Capacity : string;
     res : boolean;
 
+
+
     constructor(team : boolean, name: string, maxHp: number,currentHp : number, mana: number, 
     physical_Attack: number,physical_Defense: number, magical_Attack:number, magical_Defense:number, 
     attack_speed: number, special_Capacity:string, res : boolean)
@@ -37,6 +39,7 @@ export default class Character {
         this.attack_speed = attack_speed;
         this.special_Capacity = special_Capacity;
         this.res = res;
+        this.inventory = [];
     }
     public gainHp(hpGain: number): number{
         return this.currentHp += hpGain;
