@@ -5,8 +5,12 @@ import Star from "../Items/Star.ts"
 import Character from "../Character.ts";
 import Item from "../Item.ts";
 import Warrior from "../Heros/Warrior.ts"
+import Room from "../Room.ts"
 
-class ChestRoom {
+class ChestRoom extends Room{
+    constructor(description: string, type: string, isVisited: boolean) {
+    super(description, type, isVisited);
+    }
     
     openChest(character: Character) {
         
@@ -35,5 +39,5 @@ const halfstar = new Halfstar();
 const potion = new Potion();
 const star = new Star();
 const warrior = new Warrior();
-const chestroom = new ChestRoom();
+const chestroom = new ChestRoom("You are in the Chest Room","Chest",false);
 chestroom.openChest(warrior);

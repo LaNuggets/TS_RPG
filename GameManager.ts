@@ -5,5 +5,8 @@ class GameManager {
         const menu = new Menu ();
         menu.characterChoice();
     }
+
+    
+    
 }
 

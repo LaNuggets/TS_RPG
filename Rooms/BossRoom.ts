@@ -1,7 +1,6 @@
-import Room from "../Room.ts"
 import Boss from "../Enemies/Boss.ts"
+import Room from "../Room.ts"
 
-
-class BossRoom {
+class BossRoom extends Room {
     
 }
