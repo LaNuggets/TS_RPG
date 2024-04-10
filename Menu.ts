@@ -16,7 +16,7 @@ characterChoice() {
         const thief = new Thief()
         const barbar = new Barbar()
 
-        const characters: Character[] = [warrior,mage,paladin,priest,thief,barbar]
+        const characters: Character[] = [warrior, mage, paladin, priest, thief, barbar]
         const chosenCharacters : string[] = [];
         
 
@@ -33,11 +33,7 @@ characterChoice() {
         while (chosenCharacters.length !== 3) {
             const playerResponse = parseInt(prompt('Type the number of the character you want ->'));
             console.log(`You chose ${characters[playerResponse - 1].name}`);
-            if (chosenCharacters.includes(characters[playerResponse-1].name)) {
-                console.log(`You already Choose the ${characters[playerResponse-1].name}`)
-            } else {
             chosenCharacters.push(characters[playerResponse - 1].name);
-            }
         }
 
         console.log(`This is your team:\n -${chosenCharacters.join('\n -')}`);
@@ -71,5 +67,3 @@ characterChoice() {
 const menu = new Menu();
 //Lancez le jeu en démarrant le menu
 menu.display(); // appelle la méthode display pour afficher le menu
-
-
