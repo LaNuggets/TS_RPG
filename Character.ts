@@ -38,14 +38,14 @@ export default class Character {
         this.special_Capacity = special_Capacity;
         this.res = res;
     }
-    gainHp(hpGain: number): number{
+    public gainHp(hpGain: number): number{
         return this.currentHp += hpGain;
     }
-    loseHp(hpLose: number): number{
+    public loseHp(hpLose: number): number{
         return this.currentHp -= hpLose;
     }
 
-    monsterTurn(alliesFigthers:Character[]){ 
+    public monsterTurn(alliesFigthers:Character[]){ 
         let minimumHpIndex = 0;
         const randomNumber = Math.floor(Math.random() * 5) + 1;
                 if(randomNumber==1){
@@ -64,7 +64,7 @@ export default class Character {
                 }
     }
 
-    specialAttack(enemiesFigthers:Character[], alliesFighters: Character[], itemsInInventory: Item[]){
+    public specialAttack(enemiesFigthers:Character[], alliesFighters: Character[], itemsInInventory: Item[]){
         if(this.name ==='Barbar'){
             this.berserk(enemiesFigthers);
         }else if(this.name ==='Mage'){
@@ -78,7 +78,7 @@ export default class Character {
         }
     }
 
-    holySmash(enemiesFigthers: Character[]){
+    public holySmash(enemiesFigthers: Character[]){
         for(let i=0;i<enemiesFigthers.length;i++){
             Math.ceil((this.physical_Attack-enemiesFigthers[i].physical_Defense)*0.4);
             console.log(`The \x1b[32m${this.name}\x1b[0m has damage \x1b[31m${enemiesFigthers[i].name}\x1b[0m, \x1b[31m${enemiesFigthers[i].name}\x1b[0m has take \x1b[38;5;208m${Math.ceil((this.physical_Attack-enemiesFigthers[i].physical_Defense)*0.4)}\x1b[0m damage !`);
@@ -86,7 +86,7 @@ export default class Character {
         }
     }
 
-    berserk(enemiesFigthers: Character[]) {
+    public berserk(enemiesFigthers: Character[]) {
         const randomTarget = Math.floor(Math.random() * enemiesFigthers.length);
         const hpLost = Math.ceil(this.currentHp * 0.2);
         this.currentHp -= hpLost;
@@ -95,7 +95,7 @@ export default class Character {
         console.log(`He has \x1b[38;5;208m${this.currentHp}\x1b[0m Hp left.\nHowever the barbar lost \x1b[38;5;208m${hpLost}\x1b[0m Hp by using his special attack ! He has now \x1b[38;5;208m${this.currentHp - hpLost}\x1b[0m Hp left`);
     }
 
-    firebolt(enemiesFigthers: Character[]) {
+    public firebolt(enemiesFigthers: Character[]) {
         const manaLost = Math.ceil(this.mana * 0.5);
         this.mana -= manaLost;
         for(let i=0;i<enemiesFigthers.length;i++){
@@ -106,7 +106,7 @@ export default class Character {
         console.log(`The \x1b[32m${this.name}\x1b[0m has lost \x1b[38;5;200m${manaLost}\x1b[0m of mana and has now \x1b[38;5;200m${this.mana}\x1b[0m left`);
     }
 
-    healing(alliesFigthers: Character[]) {
+    public healing(alliesFigthers: Character[]) {
         const heal = Math.ceil(this.currentHp * 1.25);
         const goodChoice = [];
         for(let h=0; h<alliesFigthers.length;h++) {
@@ -131,10 +131,10 @@ export default class Character {
                         alliesFigthers[parseInt(choice) - 1].currentHp = this.maxHp;
 
                 }
-                return console.log(`The \x1b[32m${this.name}\x1b[0m has healed the \x1b[32m${alliesFigthers[parseInt(choice) - 1].name}\x1b[0m and has restore \x1b[38;5;208m${heal}\x1b[0m Hp. He has now \x1b[38;5;208m${this.currentHp}\x1b[0m Hp`);
+                return console.log(`The \x1b[32m${this.name}\x1b[0m has healed the \x1b[32m${alliesFigthers[parseInt(choice) - 1].name}\x1b[0m and has restore \x1b[38;5;208m${heal}\x1b[0m % Hp. He has now \x1b[38;5;208m${this.currentHp}\x1b[0m Hp`);
             }
 
-            theft(itemsInInventory: Item[]) {
+            public theft(itemsInInventory: Item[]) {
                 const potion = new Potion;
                 const ether = new Ether;
                 const halfstar = new Halfstar;
@@ -157,7 +157,7 @@ export default class Character {
                 }
             }
 
-            useItem(itemsInInventory:Item[],alliesFigthers:Character[]){
+            public useItem(itemsInInventory:Item[],alliesFigthers:Character[]){
                 let resp : string | null = null;
                 let secondeResp : string | null = null;
                 const itemsList = [];

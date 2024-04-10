@@ -8,7 +8,7 @@ import Barbar from './Heros/Barbar.ts'
 
 export default class Menu {
 
-characterChoice() {
+public characterChoice() {
         const warrior = new Warrior()
         const mage = new Mage()
         const paladin = new Paladin()
@@ -39,7 +39,7 @@ characterChoice() {
         console.log(`This is your team:\n -${chosenCharacters.join('\n -')}`);
     }
 
-    display() {
+    public display() {
         console.log("Welcome in the game !");
         console.log("Menu:");
         console.log("1. Play");

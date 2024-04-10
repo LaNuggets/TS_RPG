@@ -26,7 +26,7 @@ export default class Fight {
     constructor(fighters : Character[]) {
         this.fighters = fighters;
     }
-teamFight() {
+public teamFight() {
         const playerTurn = this.orderFight();
         let resp : string | null = null;
         const alliesFigthers = [];
@@ -89,7 +89,7 @@ teamFight() {
     }
 }
 
-    orderFight(): Character[] {
+    public orderFight(): Character[] {
         const arr : Character[] = []
         const sortedFighters = this.fighters.slice().sort((a, b) => b.attack_speed - a.attack_speed);
         sortedFighters.forEach(fighter => {
@@ -98,7 +98,7 @@ teamFight() {
         return arr
     }
 
-    enemieTeam(): Character[] {
+    public enemieTeam(): Character[] {
         const arr : Character[] = [];
         const enemies = this.fighters.filter(fighter => !fighter.team);
         enemies.forEach(enemy => {
@@ -114,7 +114,7 @@ teamFight() {
     }
 }
 
-const thief = new Thief();
+const barbar = new Barbar();
 const mage = new Mage();
 const paladin = new Paladin();
 
@@ -131,5 +131,5 @@ const star = new Star();
 
 
 
-const test = new Fight([thief,mage,paladin,snake,goblin,spider]);
+const test = new Fight([barbar,mage,paladin,snake,goblin,spider]);
 test.teamFight();

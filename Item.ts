@@ -14,7 +14,7 @@ export default class Item {
         this.healthRestitution = healthRestitution;
         this.manaRestitution = manaRestitution;
     }
-    usingItem(target:Character){
+    public usingItem(target:Character){
         if(this.name ==='Ether'){
             this.ether(target);
         }else if(this.name ==='HalfStar'){
@@ -26,11 +26,11 @@ export default class Item {
     }
 
     }
-    ether(target:Character){
+    public ether(target:Character){
         target.mana *= 1.3;
         return console.log(`The \x1b[36m${this.name}\x1b[0m has restore \x1b[38;5;208m30%\x1b[0m Mana to \x1b[32m${target.name}\x1b[0m. Is Mana is now \x1b[38;5;208m${target.mana}\x1b[0m`);
     }
-    halfstar(target:Character){
+    public halfstar(target:Character){
         if(target.res === true){
             Math.ceil(target.currentHp = target.currentHp*1.5);
             if(target.currentHp>target.maxHp){
@@ -42,14 +42,14 @@ export default class Item {
             return console.log(`The ${this.name} has revive \x1b[32m${target.name}\x1b[0m and restore is \x1b[38;5;208m20\x1b[0m% Hp. Is Hp is now \x1b[38;5;208m${target.currentHp}\x1b[0m`);
         }
     }
-    potion(target:Character){
+    public potion(target:Character){
         Math.ceil(target.currentHp *= 1.5);
         if(target.currentHp>target.maxHp){
             target.currentHp = target.maxHp;
         }
         return  console.log(`The \x1b[36m${this.name}\x1b[0m has restore \x1b[38;5;208m50%\x1b[0m hp to \x1b[32m${target.name}\x1b[0m. Is Hp is now \x1b[38;5;208m${target.currentHp}\x1b[0m`);
     }
-    star(target:Character){
+    public star(target:Character){
         if(target.res === true){
             target.currentHp = target.maxHp;
             return console.log(`The \x1b[36m${this.name}\x1b[0m has restore \x1b[38;5;208m100%\x1b[0m Hp to \x1b[32m${target.name}\x1b[0m. Is Hp is now \x1b[38;5;208m${target.currentHp}\x1b[0m`)
