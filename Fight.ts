@@ -105,15 +105,15 @@ teamFight() {
     }
 }
 
-const warrior = new Warrior();
-const mage = new Mage();
-const paladin = new Paladin();
+// const warrior = new Warrior();
+// const mage = new Mage();
+// const paladin = new Paladin();
 
-const snake = new Snake();
-const goblin = new Goblin();
-const spider = new Spider();
-const orque = new Orque();
-const ogre = new Ogre();
+// const snake = new Snake();
+// const goblin = new Goblin();
+// const spider = new Spider();
+// const orque = new Orque();
+// const ogre = new Ogre();
 
 const ether = new Ether();
 const halfstar = new Halfstar();
@@ -122,5 +122,5 @@ const star = new Star();
 
 
 
-const test = new Fight([warrior,mage,paladin,snake,goblin,spider]);
-test.teamFight();
+// const test = new Fight([warrior,mage,paladin,snake,goblin,spider]);
+// test.teamFight();

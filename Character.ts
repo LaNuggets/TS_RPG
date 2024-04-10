@@ -39,7 +39,6 @@ export default class Character {
         this.attack_speed = attack_speed;
         this.special_Capacity = special_Capacity;
         this.res = res;
-        this.inventory = [];
     }
     gainHp(hpGain: number): number{
         return this.currentHp += hpGain
@@ -173,10 +172,10 @@ export default class Character {
     }
 
     theft(itemsInInventory: Item[]) {
-        const potion = new Potion
-        const ether = new Ether
-        const halfstar = new Halfstar
-        const star = new Star
+        const potion = new Potion()
+        const ether = new Ether()
+        const halfstar = new Halfstar()
+        const star = new Star()
         const robberyChance = Math.floor(Math.random() * 100) + 1
         if(robberyChance <= 40) {
             console.log(`The \x1b[32m${this.name}\x1b[0m didn't stole anything`)
