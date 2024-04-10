@@ -1,3 +1,12 @@
+import Item from "./Item.ts";
+import Ether from './Items/Ether.ts';
+import Halfstar from './Items/Halfstar.ts';
+import Potion from "./Items/Potion.ts";
+import Star from "./Items/Star.ts";
+
+import clear from "console-clear"
+
+
 export default class Character {
     team : boolean;
     name : string;
@@ -55,7 +64,7 @@ export default class Character {
                 }
     }
 
-    specialAttack(enemiesFigthers:Character[], alliesFighters: Character[]){
+    specialAttack(enemiesFigthers:Character[], alliesFighters: Character[], itemsInInventory: Item[]){
         if(this.name ==='Barbar'){
             this.berserk(enemiesFigthers)
         }else if(this.name ==='Mage'){
@@ -65,7 +74,7 @@ export default class Character {
         }else if(this.name ==='Priest'){
             this.healing(alliesFighters)
         }else if(this.name ==='Thief'){
-            
+            this.theft(itemsInInventory)
         }
     }
     holySmash(enemiesFigthers: Character[]){
@@ -120,5 +129,71 @@ export default class Character {
 
                 }
                 return console.log(`The \x1b[32m${this.name}\x1b[0m has healed the \x1b[32m${alliesFigthers[parseInt(choice) - 1].name}\x1b[0m and has restore \x1b[38;5;208m${heal}\x1b[0m Hp. He has now \x1b[38;5;208m${this.currentHp}\x1b[0m Hp`)
+            }
+
+            theft(itemsInInventory: Item[]) {
+                const potion = new Potion
+                const ether = new Ether
+                const halfstar = new Halfstar
+                const star = new Star
+                const robberyChance = Math.floor(Math.random() * 100) + 1
+                if(robberyChance <= 40) {
+                    console.log(`The \x1b[32m${this.name}\x1b[0m didn't stole anything`)
+                }else if(robberyChance <= 70) {
+                    itemsInInventory.push(potion)
+                    console.log(`The \x1b[32m${this.name}\x1b[0m has stole a potion !`)
+                }else if(robberyChance <= 85) {
+                    itemsInInventory.push(star)
+                    console.log(`The \x1b[32m${this.name}\x1b[0m has stole an star !`)
+                }else if(robberyChance <= 90){
+                    itemsInInventory.push(ether)
+                    console.log(`The \x1b[32m${this.name}\x1b[0m has stole an ether !`)
+                }else if(robberyChance <= 95){
+                    itemsInInventory.push(halfstar)
+                    console.log(`The \x1b[32m${this.name}\x1b[0m has stole an halfstar`)
+                }
+            }
+
+            useItem(itemsInInventory:Item[],alliesFigthers:Character[]){
+                let resp : string | null = null;
+                let secondeResp : string | null = null;
+                const itemsList = [];
+                const corrrectNumber = [];
+        
+                console.log(`Here are the items you have !`);
+                for(let i=0; i<itemsInInventory.length;i++){
+                    console.log(i+1+'- \x1b[36m'+itemsInInventory[i].name+'\x1b[0m'+` Its capacity is \x1b[34m${itemsInInventory[i].capacity}.\x1b[0m`);
+                }
+                for(let j=0;j<itemsInInventory.length;j++){
+                    itemsList.push(j+1)
+                }
+                resp = prompt('Choose the item you want to use !')
+                while(true){
+                    if(resp === null|| !itemsList.includes(parseInt(resp))){
+                        resp = prompt('Please choose a correcte number !')
+                    } else{
+                        break;
+                    }
+                }
+        
+                clear(true);
+                console.log(`You use \x1b[36m${itemsInInventory[parseInt(resp)-1].name}\x1b[0m`);
+                console.log('On Which character you want to use it ?');
+                for(let i=0;i<alliesFigthers.length;i++){
+                    console.log(`${i+1}- \x1b[32m${alliesFigthers[i].name}\x1b[0m`)
+                }
+                secondeResp=prompt('On Which character you want to use it ?');
+                for(let k=0;k<alliesFigthers.length;k++){
+                    corrrectNumber.push(k+1)
+                }
+                while(true){
+                    if(secondeResp === null|| !corrrectNumber.includes(parseInt(secondeResp))){
+                        secondeResp = prompt('Please choose a correct number !')
+                    } else{
+                        break;
+                    }
+                }
+                itemsInInventory[parseInt(resp)-1].usingItem(alliesFigthers[parseInt(secondeResp)-1]);
+                itemsInInventory.splice((parseInt(resp)-1),1);
             }
         }
