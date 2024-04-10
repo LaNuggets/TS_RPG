@@ -77,7 +77,7 @@ teamFight() {
                     case "2":
                         clear(true)
                         console.log(`The \x1b[32m${playerTurn[i].name}\x1b[0m use is Special attack \x1b[35m${playerTurn[i].special_Capacity}\x1b[0m !\n`)
-                        playerTurn[i].specialAttack(enemiesFigthers);
+                        playerTurn[i].specialAttack(enemiesFigthers, alliesFigthers);
                     break;
                     case "3":
                         clear(true)

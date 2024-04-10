@@ -64,25 +64,23 @@ export default class Character {
                 }
     }
 
-    specialAttack(enemiesFigthers:Character[]){
+    specialAttack(enemiesFigthers:Character[], alliesFighters: Character[]){
         if(this.name ==='Barbar'){
-
+            this.berserk(enemiesFigthers)
         }else if(this.name ==='Mage'){
-
+            this.firebolt(enemiesFigthers)
         }else if(this.name ==='Paladin'){
             this.holySmash(enemiesFigthers)
         }else if(this.name ==='Priest'){
-            
+            this.healing(alliesFighters)
         }else if(this.name ==='Thief'){
-            
-        }else if(this.name ==='Warrior'){
             
         }
     }
     holySmash(enemiesFigthers: Character[]){
         for(let i=0;i<enemiesFigthers.length;i++){
             Math.ceil((this.physical_Attack-enemiesFigthers[i].physical_Defense)*0.4);
-            console.log(`The \x1b[32m${this.name}\x1b[0m has damage \x1b[31m${enemiesFigthers[i].name}\x1b[0m, \x1b[31m${enemiesFigthers[i].name}\x1b[0m has take \x1b[38;5;208m${Math.ceil((this.physical_Attack-enemiesFigthers[i].physical_Defense)*0.4)}\x1b[0m damage !\n`)
+            console.log(`The \x1b[32m${this.name}\x1b[0m has damage \x1b[31m${enemiesFigthers[i].name}\x1b[0m, \x1b[31m${enemiesFigthers[i].name}\x1b[0m has take \x1b[38;5;208m${Math.ceil((this.physical_Attack-enemiesFigthers[i].physical_Defense)*0.4)}\x1b[0m damage ! He has \x1b[38;5;208m${this.currentHp}\x1b[0m Hp left.\n`);
         }
     }
     useItem(itemsInInventory:Item[],alliesFigthers:Character[]){
