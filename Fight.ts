@@ -67,8 +67,9 @@ export default class Fight {
                     break;
                 }
                     case "2":
-                        console.log(`The \x1b[32m${playerTurn[i].name}\x1b[0m use is Special attack \x1b[35m${playerTurn[i].special_Capacity}\x1b[0m !`)
-
+                        clear(true)
+                        console.log(`The \x1b[32m${playerTurn[i].name}\x1b[0m use is Special attack \x1b[35m${playerTurn[i].special_Capacity}\x1b[0m !\n`)
+                        playerTurn[i].specialAttack(enemiesFigthers);
                     break;
                     case "3":
 
