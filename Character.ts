@@ -72,7 +72,7 @@ export default class Character {
         }
     }
 
-    specialAttack(enemiesFigthers:Character[], alliesFighters: Character[]){
+    specialAttack(enemiesFigthers:Character[], alliesFighters: Character[], itemsInInventory: Item[]){
         if(this.name ==='Barbar'){
             this.berserk(enemiesFigthers)
         }else if(this.name ==='Mage'){
