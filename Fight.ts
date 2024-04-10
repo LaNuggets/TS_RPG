@@ -30,12 +30,17 @@ teamFight() {
         const playerTurn = this.orderFight();
         let resp : string | null = null;
         const alliesFigthers = [];
+        const alliesFigthersAlive = []
         const enemiesFigthers = [];
         const itemsInInventory:Item[] = [halfstar,potion,potion,ether];
-
+        playerTurn[3].res=false
+        
          for(let b=0;b<playerTurn.length;b++){
-            if(playerTurn[b].team===true && playerTurn[b].res === true){
+            if(playerTurn[b].team===true ){
                 alliesFigthers.push(playerTurn[b])
+                if(playerTurn[b].res === true){
+                    alliesFigthersAlive.push(playerTurn[b])
+                }
             } else if(playerTurn[b].team===false && playerTurn[b].res === true){
                 enemiesFigthers.push(playerTurn[b])
             }
@@ -49,7 +54,7 @@ teamFight() {
                 }
             }else{
             if(playerTurn[i].team === false){
-                playerTurn[i].monsterTurn(alliesFigthers)
+                playerTurn[i].monsterTurn(alliesFigthersAlive)
             }else{
             console.log(`\nThis is your turn \x1b[32m${playerTurn[i].name}\x1b[0m`);
             console.log('What do you want to do ?');

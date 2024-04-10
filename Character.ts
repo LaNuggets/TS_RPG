@@ -63,6 +63,14 @@ export default class Character {
                     console.log(`The \x1b[31m${this.name}\x1b[0m has attack the \x1b[32m${alliesFigthers[random].name}\x1b[0m, \x1b[32m${alliesFigthers[random].name}\x1b[0m has lose \x1b[38;5;208m${this.physical_Attack}\x1b[0m Hp, he has \x1b[38;5;208m${alliesFigthers[random].currentHp}\x1b[0m Hp left.\n`);
                 }
     }
+    bossTurn(alliesFighters: Character[]){
+        const randomNumber = Math.floor(Math.random() * 10) + 3;
+        if(randomNumber==1||randomNumber==2||randomNumber==3){
+            this.decimatingSmash(alliesFighters);
+        }else{
+            this.monsterTurn(alliesFighters)
+        }
+    }
 
     specialAttack(enemiesFigthers:Character[], alliesFighters: Character[]){
         if(this.name ==='Barbar'){
@@ -75,6 +83,12 @@ export default class Character {
             this.healing(alliesFighters)
         }else if(this.name ==='Thief'){
             
+        }
+    }
+    decimatingSmash(alliesFighters:Character[]){
+        for(let i=0;i<alliesFighters.length;i++){
+            Math.ceil((this.physical_Attack-alliesFighters[i].physical_Defense)*0.4);
+            console.log(`The \x1b[32m${this.name}\x1b[0m has damage \x1b[31m${alliesFighters[i].name}\x1b[0m, \x1b[31m${alliesFighters[i].name}\x1b[0m has take \x1b[38;5;208m${Math.ceil((this.physical_Attack-enemiesFigthers[i].physical_Defense)*0.4)}\x1b[0m damage ! He has \x1b[38;5;208m${this.currentHp}\x1b[0m Hp left.\n`);
         }
     }
     holySmash(enemiesFigthers: Character[]){
