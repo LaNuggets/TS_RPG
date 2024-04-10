@@ -82,7 +82,7 @@ export default class Character {
         }else if(this.name ==='Priest'){
             this.healing(alliesFighters)
         }else if(this.name ==='Thief'){
-            
+            this.theft(itemsInInventory)
         }
     }
     decimatingSmash(alliesFighters:Character[]){
@@ -142,6 +142,29 @@ export default class Character {
 
                 }
             return console.log(`The \x1b[32m${this.name}\x1b[0m has healed the \x1b[32m${alliesFigthers[parseInt(choice) - 1].name}\x1b[0m and has restore \x1b[38;5;208m${heal}\x1b[0m Hp. He has now \x1b[38;5;208m${this.currentHp}\x1b[0m Hp`)
+    }
+
+    theft(itemsInInventory: Item[]) {
+        const potion = new Potion
+        const ether = new Ether
+        const halfstar = new Halfstar
+        const star = new Star
+        const robberyChance = Math.floor(Math.random() * 100) + 1
+        if(robberyChance <= 40) {
+            console.log(`The \x1b[32m${this.name}\x1b[0m didn't stole anything`)
+        }else if(robberyChance <= 70) {
+            itemsInInventory.push(potion)
+            console.log(`The \x1b[32m${this.name}\x1b[0m has stole a potion !`)
+        }else if(robberyChance <= 85) {
+            itemsInInventory.push(star)
+            console.log(`The \x1b[32m${this.name}\x1b[0m has stole an star !`)
+        }else if(robberyChance <= 90){
+            itemsInInventory.push(ether)
+            console.log(`The \x1b[32m${this.name}\x1b[0m has stole an ether !`)
+        }else if(robberyChance <= 95){
+            itemsInInventory.push(halfstar)
+            console.log(`The \x1b[32m${this.name}\x1b[0m has stole an halfstar`)
+        }
     }
 
     useItem(itemsInInventory:Item[],alliesFigthers:Character[]){
