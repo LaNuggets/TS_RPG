@@ -28,12 +28,11 @@ export default class Fight {
     }
 teamFight() {
         const playerTurn = this.orderFight();
-        let resp : string | null = null;
         const alliesFigthers = [];
         const alliesFigthersAlive = []
         const enemiesFigthers = [];
         const itemsInInventory:Item[] = [halfstar,potion,potion,ether];
-        playerTurn[3].res=false
+
         
          for(let b=0;b<playerTurn.length;b++){
             if(playerTurn[b].team===true ){
@@ -45,6 +44,7 @@ teamFight() {
                 enemiesFigthers.push(playerTurn[b])
             }
          }
+         
          for(let i=0; i < playerTurn.length; i++){
             if(playerTurn[i].res === false){
                 if(playerTurn[i].team=== true){
@@ -62,21 +62,7 @@ teamFight() {
             const response = prompt('Choose a number:')
             switch(response){
                 case "1":{
-                    clear(true)
-                    console.log(`You are the \x1b[32m${playerTurn[i].name}\x1b[0m`)
-                    for(let j=0; j <enemiesFigthers.length; j++){
-                        console.log(j+1+`- \x1b[31m${enemiesFigthers[j].name}\x1b[0m`);
-                    }
-                    while(!(resp == '1' || resp == '2' || resp == '3')){
-                        resp = prompt('Choose your target number !');
-                        if(!(resp == '1' || resp == '2' || resp == '3')){
-                            resp = prompt('Choose a correct number !');
-                        } 
-                    }
-                    clear(true);
-                    playerTurn[parseInt(resp)-1].loseHp(playerTurn[i].physical_Attack)
-                    console.log(`The \x1b[32m${playerTurn[i].name}\x1b[0m damage the \x1b[31m${playerTurn[parseInt(resp)-1].name}\x1b[0m, he lose \x1b[38;5;208m${playerTurn[i].physical_Attack}\x1b[0m Hp, he has \x1b[38;5;208m${playerTurn[parseInt(resp)-1].currentHp}\x1b[0m Hp left.\n`)
-                    resp = null
+                    playerTurn[i].alliesAttack(enemiesFigthers)
                     break;
                 }
                     case "2":

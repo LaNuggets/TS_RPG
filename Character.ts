@@ -45,6 +45,31 @@ export default class Character {
         return this.currentHp -= hpLose
     }
 
+    alliesAttack(enemiesFigthers: Character[]){
+        let resp : string | null = null;
+        const choice:number[] = [];
+        for(let j=0;j<enemiesFigthers.length;j++){
+            choice.push(j+1)
+        }
+        clear(true)
+                console.log(`You are the \x1b[32m${this.name}\x1b[0m`)
+                    for(let j=0; j <enemiesFigthers.length; j++){
+                        console.log(j+1+`- \x1b[31m${enemiesFigthers[j].name}\x1b[0m`);
+                    }
+                    resp = prompt('Choose your target number !');
+                    while(true) {
+                        if(resp == null || !(choice.includes(parseInt(resp)))) {
+                           resp = prompt('Choose a correct number !');
+                        } else {
+                            break;
+                        }
+                    }
+                    clear(true);
+                    enemiesFigthers[parseInt(resp)-1].loseHp(this.physical_Attack)
+                    console.log(`The \x1b[32m${this.name}\x1b[0m damage the \x1b[31m${enemiesFigthers[parseInt(resp)-1].name}\x1b[0m, he lose \x1b[38;5;208m${this.physical_Attack}\x1b[0m Hp, he has \x1b[38;5;208m${enemiesFigthers[parseInt(resp)-1].currentHp}\x1b[0m Hp left.\n`)
+                    resp = null
+    }
+
     monsterTurn(alliesFigthers:Character[]){ 
         let minimumHpIndex = 0;
         const randomNumber = Math.floor(Math.random() * 5) + 1;
@@ -197,7 +222,7 @@ export default class Character {
         }
         secondeResp=prompt('On Which character you want to use it ?');
         for(let k=0;k<alliesFigthers.length;k++){
-            corrrectNumber.push(k+1)
+            corrrectNumber.push(k+1);
         }
         while(true){
             if(secondeResp === null|| !corrrectNumber.includes(parseInt(secondeResp))){
