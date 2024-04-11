@@ -6,9 +6,19 @@ import Priest from './Heros/Priest.ts'
 import Thief from './Heros/Thief.ts'
 import Barbar from './Heros/Barbar.ts'
 
+import Ogre from './Enemies/Ogre.ts';
+import Goblin from './Enemies/Goblin.ts';
+import Orque from './Enemies/Orque.ts';
+import Snake from './Enemies/Snake.ts';
+import Spider from './Enemies/Spider.ts';
+
+import FightRoom from "./Rooms/FightRoom.ts"
+import Fight from "./Fight.ts"
+
+
 export default class Menu {
 
-    public characterChoice() {
+    characterChoice():Character[] {
         const warrior = new Warrior()
         const mage = new Mage()
         const paladin = new Paladin()
@@ -17,7 +27,7 @@ export default class Menu {
         const barbar = new Barbar()
     
         const characters: Character[] = [warrior, mage, paladin, priest, thief, barbar]
-        const chosenCharacters: string[] = [];
+        const chosenCharacters: Character[] = [];
     
         console.log("Welcome to this TypeScript RPG!");
         console.log("Rules...");
@@ -33,19 +43,22 @@ export default class Menu {
             const playerResponse = parseInt(prompt('Type the number of the character you want ->'));
     
             // Vérifier si le personnage a déjà été choisi
-            if (chosenCharacters.includes(characters[playerResponse - 1].name)) {
+            if (chosenCharacters.includes(characters[playerResponse - 1])) {
                 console.log(`You already chose the ${characters[playerResponse - 1].name}`);
             } else {
                 console.log(`You chose ${characters[playerResponse - 1].name}`);
-                chosenCharacters.push(characters[playerResponse - 1].name);
+                chosenCharacters.push(characters[playerResponse - 1]);
             }
         }
-    
-        console.log(`This is your team:\n -${chosenCharacters.join('\n -')}`);
+        console.log('This is your team:')
+        for(let i=0;i<chosenCharacters.length;i++){
+            console.log(`-\x1b[32m${chosenCharacters[i].name}\x1b[0m`);
+        }
+        return chosenCharacters;
     }
     
 
-    public display() {
+    display():Character[] {
         console.log("Welcome in the game !");
         console.log("Menu:");
         console.log("1. Play");
@@ -57,18 +70,29 @@ export default class Menu {
         while (playerResponse !== 1 && 3) {
         const playerResponse = parseInt(prompt("Type the number you want ?"));
         if(playerResponse == 1){
-            menu.characterChoice();
+           const ret =this.characterChoice();
+            return ret
         }
         if (playerResponse >= 1 && playerResponse <= 3) {
-        return (playerResponse)
+         console.log('Nothing append...')
         } else {
             console.log("Enter a correct number between 1 and 3: ");
         }
 
     }
     }
-}
 
-const menu = new Menu();
-//Lancez le jeu en démarrant le menu
-menu.display(); // appelle la méthode display pour afficher le menu
+    generateEnemies():[FightRoom, Character[]]{
+        const snake = new Snake();
+        const goblin = new Goblin();
+        const spider = new Spider();
+        const orque = new Orque();
+        const ogre = new Ogre();
+        const enemiesFigthers:Character[]=[snake,goblin,spider,orque,ogre];
+
+        const enemy = new Fight(enemiesFigthers);
+        const enemiesTeam = enemy.enemieTeam();
+        const adversaire = new FightRoom(enemiesTeam);
+        return [adversaire, enemiesTeam]
+    }
+}
