@@ -1,22 +1,7 @@
 import Character from "./Character.ts";
-import Warrior from './Heros/Warrior.ts';
-import Mage from './Heros/Mage.ts';
-import Paladin from './Heros/Paladin.ts';
-import Priest from './Heros/Priest.ts';
-import Thief from './Heros/Thief.ts';
-import Barbar from './Heros/Barbar.ts';
-
-import Ogre from './Enemies/Ogre.ts';
-import Goblin from './Enemies/Goblin.ts';
-import Orque from './Enemies/Orque.ts';
-import Snake from './Enemies/Snake.ts';
-import Spider from './Enemies/Spider.ts';
 
 import Item from "./Item.ts";
-import Ether from './Items/Ether.ts';
-import Halfstar from './Items/Halfstar.ts';
-import Potion from "./Items/Potion.ts";
-import Star from "./Items/Star.ts";
+
 
 import clear from "console-clear"
 
@@ -26,12 +11,11 @@ export default class Fight {
     constructor(fighters : Character[]) {
         this.fighters = fighters;
     }
-teamFight() {
+teamFight(itemsInInventory:Item[]):[Character[],Character[],Item[]] {
         const playerTurn = this.orderFight();
         const alliesFigthers = [];
         let alliesFigthersAlive = []
         let enemiesFigthers = [];
-        const itemsInInventory:Item[] = [halfstar,potion,potion,ether];
 
         
          for(let b=0;b<playerTurn.length;b++){
@@ -50,7 +34,7 @@ teamFight() {
                 alliesFigthersAlive=playerTurn[i].monsterTurn(alliesFigthersAlive)
             }else{
                 if(enemiesFigthers.length ==0){
-                    return [alliesFigthersAlive, enemiesFigthers];
+                    return [alliesFigthersAlive, enemiesFigthers,itemsInInventory];
                 }
                 if(!alliesFigthersAlive.includes(playerTurn[i])){
                     console.log('\x1b[32m'+playerTurn[i].name+'\x1b[0m' +' is dead, he cannot do anything !');
@@ -77,7 +61,7 @@ teamFight() {
             }
     }
 }
-    return[alliesFigthersAlive, enemiesFigthers]
+    return[alliesFigthersAlive, enemiesFigthers, itemsInInventory]
 }
 
     orderFight(): Character[] {
@@ -104,23 +88,3 @@ teamFight() {
         return newTeam;
     }
 }
-
-// const warrior = new Warrior();
-// const mage = new Mage();
-// const paladin = new Paladin();
-
-// const snake = new Snake();
-// const goblin = new Goblin();
-// const spider = new Spider();
-// const orque = new Orque();
-// const ogre = new Ogre();
-
-const ether = new Ether();
-const halfstar = new Halfstar();
-const potion = new Potion();
-const star = new Star();
-
-
-
-// const test = new Fight([warrior,mage,paladin,snake,goblin,spider]);
-// test.teamFight();

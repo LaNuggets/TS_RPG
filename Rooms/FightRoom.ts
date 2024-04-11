@@ -1,11 +1,13 @@
 import Fight from "../Fight.ts"
-import Room from "../Room.ts"
 import Character from "../Character.ts";
+import Item from "../Item.ts";
 
 
 export default class FightRoom extends Fight  {
     
-    fight(enemiesFigthers:Character[], alliesFigthers:Character[]){
+    fight(enemiesFigthers:Character[], alliesFigthers:Character[] ,itemsInInventory: Item[]):[Character[], Item[]]{
+        let enemiesTeam: Character[] = []
+        let alliesFigthersAlive:Character[] = []
         console.log(`You have enter in the First Room !`);
         console.log(`You came face to face against`);
         for(let i=0;i<enemiesFigthers.length;i++){
@@ -15,17 +17,18 @@ export default class FightRoom extends Fight  {
         const final = new Fight(battlefighter);
         let roundCount = 1;
         console.log(`Your on the ${roundCount} round !`);
-        let [alliesFigthersAlive, enemiesTeam] = final.teamFight();
+        [alliesFigthersAlive, enemiesTeam, itemsInInventory] = final.teamFight(itemsInInventory);
         while(!(alliesFigthersAlive.length ==0 ||enemiesTeam.length ==0)){
             roundCount++;
             console.log(`Your on the ${roundCount} round !`);
-            [alliesFigthersAlive, enemiesTeam] = final.teamFight();
+            [alliesFigthersAlive, enemiesTeam, itemsInInventory] = final.teamFight(itemsInInventory);
         }
         if(alliesFigthersAlive.length ==0){
             console.log('Your team has been decimated. Game Over !');
         }else if(enemiesTeam.length ==0){
             console.log('You killed all the enemie team, congratulation !');
             console.log("Let's go in the next Room !");
+            return [alliesFigthersAlive, itemsInInventory];
         }
     }
 }

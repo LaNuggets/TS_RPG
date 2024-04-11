@@ -2,28 +2,30 @@ import Menu from "./Menu.ts";
 import FightRoom from "./Rooms/FightRoom.ts"
 import Fight from "./Fight.ts"
 import Character from "./Character.ts";
+import ChestRoom from './Rooms/ChestRoom.ts'
 
-import clear from "console-clear"
-
-import Warrior from './Heros/Warrior.ts';
-import Mage from './Heros/Mage.ts';
-import Paladin from './Heros/Paladin.ts';
-import Priest from './Heros/Priest.ts';
-import Thief from './Heros/Thief.ts';
-import Barbar from './Heros/Barbar.ts';
-
-import Ogre from './Enemies/Ogre.ts';
-import Goblin from './Enemies/Goblin.ts';
-import Orque from './Enemies/Orque.ts';
-import Snake from './Enemies/Snake.ts';
-import Spider from './Enemies/Spider.ts';
+import Item from "./Item.ts";
+import Ether from './Items/Ether.ts';
+import Halfstar from './Items/Halfstar.ts';
+import Potion from "./Items/Potion.ts";
 
 class GameManager {
     play(){
+        const ether = new Ether();
+        const halfstar = new Halfstar();
+        const potion = new Potion();
+        let itemsInInventory:Item[] = [halfstar,potion,potion,ether];
+        let alliesFigthersAlive:Character []=[]
+
         const menu = new Menu();
-        const [adversaire, enemiesTeam] =menu.generateEnemies();
+        let [adversaire, enemiesTeam] =menu.generateEnemies();
         const alliesFigthers = menu.display(); // The start of the Game + Team choice
-        adversaire.fight(enemiesTeam, alliesFigthers);// Room number + enemies meet
+        [alliesFigthersAlive, itemsInInventory]=adversaire.fight(enemiesTeam, alliesFigthers,itemsInInventory);// Room number + enemies meet
+        const chestroom = new ChestRoom("You are in the Chest Room","Chest",false);
+        itemsInInventory =chestroom.openChest(alliesFigthersAlive[0],itemsInInventory);
+        [adversaire, enemiesTeam] =menu.generateEnemies();
+        [alliesFigthersAlive, itemsInInventory]=adversaire.fight(enemiesTeam, alliesFigthers,itemsInInventory);// Room number + enemies meet
+        itemsInInventory =chestroom.openChest(alliesFigthersAlive[0],itemsInInventory);
     }
 }
 
