@@ -3,7 +3,6 @@ import Ether from './Items/Ether.ts';
 import Halfstar from './Items/Halfstar.ts';
 import Potion from "./Items/Potion.ts";
 import Star from "./Items/Star.ts";
-
 import clear from "console-clear"
 
 

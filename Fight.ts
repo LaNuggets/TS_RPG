@@ -1,8 +1,5 @@
 import Character from "./Character.ts";
-
 import Item from "./Item.ts";
-
-
 import clear from "console-clear"
 
 export default class Fight {
