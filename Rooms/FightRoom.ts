@@ -14,11 +14,11 @@ export default class FightRoom extends Fight  {
         const battlefighter = alliesFigthers.concat(enemiesFigthers) // enemies and allies in the same array
         const final = new Fight(battlefighter);
         let roundCount = 1;
-        console.log(`your on the ${roundCount} round !`);
+        console.log(`Your on the ${roundCount} round !`);
         let [alliesFigthersAlive, enemiesTeam] = final.teamFight();
         while(!(alliesFigthersAlive.length ==0 ||enemiesTeam.length ==0)){
             roundCount++;
-            console.log(`your on the ${roundCount} round !`);
+            console.log(`Your on the ${roundCount} round !`);
             [alliesFigthersAlive, enemiesTeam] = final.teamFight();
         }
         if(alliesFigthersAlive.length ==0){

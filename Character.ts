@@ -50,6 +50,9 @@ export default class Character {
     alliesAttack(enemiesFigthers: Character[]){
         let resp : string | null = null;
         const choice:number[] = [];
+        if(enemiesFigthers.length ==0){
+            return enemiesFigthers;
+        }else{
         for(let j=0;j<enemiesFigthers.length;j++){
             choice.push(j+1)
         }
@@ -68,8 +71,18 @@ export default class Character {
                     }
                     clear(true);
                     enemiesFigthers[parseInt(resp)-1].loseHp(this.physical_Attack)
+                    if(enemiesFigthers[parseInt(resp)-1].currentHp <=0){
+                        enemiesFigthers[parseInt(resp)-1].currentHp = 0;
+                        enemiesFigthers[parseInt(resp)-1].res = false;
+                        console.log(`The \x1b[32m${this.name}\x1b[0m damage the \x1b[31m${enemiesFigthers[parseInt(resp)-1].name}\x1b[0m, and kill him\n`);
+                        enemiesFigthers.splice(parseInt(resp)-1,1);
+                        resp = null;
+                    }else{
                     console.log(`The \x1b[32m${this.name}\x1b[0m damage the \x1b[31m${enemiesFigthers[parseInt(resp)-1].name}\x1b[0m, he lose \x1b[38;5;208m${this.physical_Attack}\x1b[0m Hp, he has \x1b[38;5;208m${enemiesFigthers[parseInt(resp)-1].currentHp}\x1b[0m Hp left.\n`)
-                    resp = null
+                    resp = null;
+                }
+            }
+                return enemiesFigthers;
     }
 
     monsterTurn(alliesFigthersAlive:Character[]):Character[]{ 
@@ -105,8 +118,8 @@ export default class Character {
                         console.log(`The \x1b[31m${this.name}\x1b[0m has attack the \x1b[32m${alliesFigthersAlive[random].name}\x1b[0m, \x1b[32m${alliesFigthersAlive[random].name}\x1b[0m has lose \x1b[38;5;208m${this.physical_Attack}\x1b[0m Hp, he has \x1b[38;5;208m${alliesFigthersAlive[random].currentHp}\x1b[0m Hp left.\n`);
                     }
                 }
-                return alliesFigthersAlive
             }
+            return alliesFigthersAlive;
     }
     bossTurn(alliesFighters: Character[]){
         const randomNumber = Math.floor(Math.random() * 10) + 3;

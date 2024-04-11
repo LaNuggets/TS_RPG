@@ -30,7 +30,7 @@ teamFight() {
         const playerTurn = this.orderFight();
         const alliesFigthers = [];
         let alliesFigthersAlive = []
-        const enemiesFigthers = [];
+        let enemiesFigthers = [];
         const itemsInInventory:Item[] = [halfstar,potion,potion,ether];
 
         
@@ -44,11 +44,14 @@ teamFight() {
                 enemiesFigthers.push(playerTurn[b])
             }
          }
-         
+
          for(let i=0; i < playerTurn.length; i++){
             if(playerTurn[i].team === false){
                 alliesFigthersAlive=playerTurn[i].monsterTurn(alliesFigthersAlive)
             }else{
+                if(enemiesFigthers.length ==0){
+                    return [alliesFigthersAlive, enemiesFigthers];
+                }
                 if(!alliesFigthersAlive.includes(playerTurn[i])){
                     console.log('\x1b[32m'+playerTurn[i].name+'\x1b[0m' +' is dead, he cannot do anything !');
                 }else{
@@ -58,7 +61,7 @@ teamFight() {
             const response = prompt('Choose a number:')
             switch(response){
                 case "1":{
-                    playerTurn[i].alliesAttack(enemiesFigthers)
+                    enemiesFigthers =playerTurn[i].alliesAttack(enemiesFigthers)
                     break;
                 }
                     case "2":
