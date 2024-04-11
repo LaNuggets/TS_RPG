@@ -8,7 +8,7 @@ import Barbar from './Heros/Barbar.ts'
 
 export default class Menu {
 
-    characterChoice() {
+    characterChoice(): Character[] {
         const warrior = new Warrior()
         const mage = new Mage()
         const paladin = new Paladin()
@@ -17,7 +17,7 @@ export default class Menu {
         const barbar = new Barbar()
     
         const characters: Character[] = [warrior, mage, paladin, priest, thief, barbar]
-        const chosenCharacters: string[] = [];
+        const chosenCharacters: Character[] = [];
     
         console.log("Welcome to this TypeScript RPG!");
         console.log("Rules...");
@@ -33,42 +33,23 @@ export default class Menu {
             const playerResponse = parseInt(prompt('Type the number of the character you want ->'));
     
             // Vérifier si le personnage a déjà été choisi
-            if (chosenCharacters.includes(characters[playerResponse - 1].name)) {
+            if (chosenCharacters.includes(characters[playerResponse - 1])) {
                 console.log(`You already chose the ${characters[playerResponse - 1].name}`);
             } else {
                 console.log(`You chose ${characters[playerResponse - 1].name}`);
-                chosenCharacters.push(characters[playerResponse - 1].name);
+                chosenCharacters.push(characters[playerResponse - 1]);
             }
         }
     
-        console.log(`This is your team:\n -${chosenCharacters.join('\n -')}`);
-    }
-    
-
-    display() {
-        console.log("Welcome in the game !");
-        console.log("Menu:");
-        console.log("1. Play");
-        console.log("2. Info");
-        console.log("3. Quit");
-
-        const playerResponse = 5;
-
-        while (playerResponse !== 1 && 3) {
-        const playerResponse = parseInt(prompt("Type the number you want ?"));
-        if(playerResponse == 1){
-            menu.characterChoice();
-        }
-        if (playerResponse >= 1 && playerResponse <= 3) {
-        return (playerResponse)
-        } else {
-            console.log("Enter a correct number between 1 and 3: ");
-        }
-
-    }
+        console.log(`This is your team:`);
+        chosenCharacters.forEach(character => console.log(character.name));
+        
+        return chosenCharacters; // Retourne les personnages choisis
     }
 }
+    
+    // Utilisation de la méthode characterChoice()
+    const menu = new Menu();
+    menu.characterChoice();
 
-const menu = new Menu();
-//Lancez le jeu en démarrant le menu
-menu.display(); // appelle la méthode display pour afficher le menu
+    console.log(menu.characterChoice());
