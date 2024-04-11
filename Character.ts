@@ -72,23 +72,41 @@ export default class Character {
                     resp = null
     }
 
-    monsterTurn(alliesFigthers:Character[]){ 
+    monsterTurn(alliesFigthersAlive:Character[]):Character[]{ 
         let minimumHpIndex = 0;
+        if(alliesFigthersAlive.length ==0){
+            return alliesFigthersAlive;
+        }else{
         const randomNumber = Math.floor(Math.random() * 5) + 1;
                 if(randomNumber==1){
-                    for(let k=0; k < alliesFigthers.length; k++){
-                        if(alliesFigthers[k].currentHp < alliesFigthers[minimumHpIndex].currentHp) {
+                    for(let k=0; k < alliesFigthersAlive.length; k++){
+                        if(alliesFigthersAlive[k].currentHp < alliesFigthersAlive[minimumHpIndex].currentHp) {
                             minimumHpIndex = k;
                         }
                     }
-                    alliesFigthers[minimumHpIndex].loseHp(this.physical_Attack);
-                    console.log(`The \x1b[31m${this.name}\x1b[0m has attack the \x1b[32m${alliesFigthers[minimumHpIndex].name}\x1b[0m, \x1b[32m${alliesFigthers[minimumHpIndex].name}\x1b[0m has lose \x1b[38;5;208m${this.physical_Attack}\x1b[0m Hp, he has \x1b[38;5;208m${alliesFigthers[minimumHpIndex].currentHp}\x1b[0m Hp left.\n`);
-
+                    alliesFigthersAlive[minimumHpIndex].loseHp(this.physical_Attack);
+                    if(alliesFigthersAlive[minimumHpIndex].currentHp <= 0){
+                        alliesFigthersAlive[minimumHpIndex].currentHp =0;
+                        alliesFigthersAlive[minimumHpIndex].res =false;
+                        console.log(`The \x1b[31m${this.name}\x1b[0m has attack the \x1b[32m${alliesFigthersAlive[minimumHpIndex].name}\x1b[0m, and kill him\n`);
+                        alliesFigthersAlive.splice(minimumHpIndex,1);
+                        }else {
+                            console.log(`The \x1b[31m${this.name}\x1b[0m has attack the \x1b[32m${alliesFigthersAlive[minimumHpIndex].name}\x1b[0m, \x1b[32m${alliesFigthersAlive[minimumHpIndex].name}\x1b[0m has lose \x1b[38;5;208m${this.physical_Attack}\x1b[0m Hp, he has \x1b[38;5;208m${alliesFigthersAlive[minimumHpIndex].currentHp}\x1b[0m Hp left.\n`);
+                        }
                 }else{
-                    const random = Math.floor(Math.random() * alliesFigthers.length);
-                    alliesFigthers[random].loseHp(this.physical_Attack);
-                    console.log(`The \x1b[31m${this.name}\x1b[0m has attack the \x1b[32m${alliesFigthers[random].name}\x1b[0m, \x1b[32m${alliesFigthers[random].name}\x1b[0m has lose \x1b[38;5;208m${this.physical_Attack}\x1b[0m Hp, he has \x1b[38;5;208m${alliesFigthers[random].currentHp}\x1b[0m Hp left.\n`);
+                    const random = Math.floor(Math.random() * alliesFigthersAlive.length);
+                    alliesFigthersAlive[random].loseHp(this.physical_Attack);
+                    if(alliesFigthersAlive[random].currentHp <= 0){
+                        alliesFigthersAlive[random].currentHp =0;
+                        alliesFigthersAlive[random].res =false;
+                    console.log(`The \x1b[31m${this.name}\x1b[0m has attack the \x1b[32m${alliesFigthersAlive[random].name}\x1b[0m, and kill him\n`);
+                    alliesFigthersAlive.splice(random,1);
+                }else{
+                        console.log(`The \x1b[31m${this.name}\x1b[0m has attack the \x1b[32m${alliesFigthersAlive[random].name}\x1b[0m, \x1b[32m${alliesFigthersAlive[random].name}\x1b[0m has lose \x1b[38;5;208m${this.physical_Attack}\x1b[0m Hp, he has \x1b[38;5;208m${alliesFigthersAlive[random].currentHp}\x1b[0m Hp left.\n`);
+                    }
                 }
+                return alliesFigthersAlive
+            }
     }
     bossTurn(alliesFighters: Character[]){
         const randomNumber = Math.floor(Math.random() * 10) + 3;
@@ -215,7 +233,6 @@ export default class Character {
                 break;
             }
         }
-
         clear(true);
         console.log(`You use \x1b[36m${itemsInInventory[parseInt(resp)-1].name}\x1b[0m`);
         console.log('On Which character you want to use it ?');

@@ -6,6 +6,16 @@ import Priest from './Heros/Priest.ts'
 import Thief from './Heros/Thief.ts'
 import Barbar from './Heros/Barbar.ts'
 
+import Ogre from './Enemies/Ogre.ts';
+import Goblin from './Enemies/Goblin.ts';
+import Orque from './Enemies/Orque.ts';
+import Snake from './Enemies/Snake.ts';
+import Spider from './Enemies/Spider.ts';
+
+import FightRoom from "./Rooms/FightRoom.ts"
+import Fight from "./Fight.ts"
+
+
 export default class Menu {
 
     characterChoice():Character[] {
@@ -48,7 +58,7 @@ export default class Menu {
     }
     
 
-    display() {
+    display():Character[] {
         console.log("Welcome in the game !");
         console.log("Menu:");
         console.log("1. Play");
@@ -70,5 +80,19 @@ export default class Menu {
         }
 
     }
+    }
+
+    generateEnemies():[FightRoom, Character[]]{
+        const snake = new Snake();
+        const goblin = new Goblin();
+        const spider = new Spider();
+        const orque = new Orque();
+        const ogre = new Ogre();
+        const enemiesFigthers:Character[]=[snake,goblin,spider,orque,ogre];
+
+        const enemy = new Fight(enemiesFigthers);
+        const enemiesTeam = enemy.enemieTeam();
+        const adversaire = new FightRoom(enemiesTeam);
+        return [adversaire, enemiesTeam]
     }
 }

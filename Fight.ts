@@ -29,7 +29,7 @@ export default class Fight {
 teamFight() {
         const playerTurn = this.orderFight();
         const alliesFigthers = [];
-        const alliesFigthersAlive = []
+        let alliesFigthersAlive = []
         const enemiesFigthers = [];
         const itemsInInventory:Item[] = [halfstar,potion,potion,ether];
 
@@ -46,16 +46,12 @@ teamFight() {
          }
          
          for(let i=0; i < playerTurn.length; i++){
-            if(playerTurn[i].res === false){
-                if(playerTurn[i].team=== true){
-                console.log(`\x1b[32m${playerTurn[i].name}\x1b[0m is dead, he cannot do anything.`)
-                }else if (playerTurn[i].team=== false){
-                    console.log(`\x1b[31m${playerTurn[i].name}\x1b[0m is dead, he cannot do anything.`)
-                }
-            }else{
             if(playerTurn[i].team === false){
-                playerTurn[i].monsterTurn(alliesFigthersAlive)
+                alliesFigthersAlive=playerTurn[i].monsterTurn(alliesFigthersAlive)
             }else{
+                if(!alliesFigthersAlive.includes(playerTurn[i])){
+                    console.log('\x1b[32m'+playerTurn[i].name+'\x1b[0m' +' is dead, he cannot do anything !');
+                }else{
             console.log(`\nThis is your turn \x1b[32m${playerTurn[i].name}\x1b[0m`);
             console.log('What do you want to do ?');
             console.log(' 1- Attack \n 2- Special Attack \n 3- Use Item');
@@ -68,7 +64,7 @@ teamFight() {
                     case "2":
                         clear(true)
                         console.log(`The \x1b[32m${playerTurn[i].name}\x1b[0m use is Special attack \x1b[35m${playerTurn[i].special_Capacity}\x1b[0m !\n`)
-                        playerTurn[i].specialAttack(enemiesFigthers, alliesFigthers, itemsInInventory);
+                        playerTurn[i].specialAttack(enemiesFigthers, alliesFigthersAlive, itemsInInventory);
                     break;
                     case "3":
                         clear(true)
@@ -76,8 +72,9 @@ teamFight() {
                     break;
                 }
             }
-        }
     }
+}
+    return[alliesFigthersAlive, enemiesFigthers]
 }
 
     orderFight(): Character[] {

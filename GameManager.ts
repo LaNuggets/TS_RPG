@@ -5,7 +5,6 @@ import Character from "./Character.ts";
 
 import clear from "console-clear"
 
-
 import Warrior from './Heros/Warrior.ts';
 import Mage from './Heros/Mage.ts';
 import Paladin from './Heros/Paladin.ts';
@@ -21,32 +20,10 @@ import Spider from './Enemies/Spider.ts';
 
 class GameManager {
     play(){
-        const snake = new Snake();
-        const goblin = new Goblin();
-        const spider = new Spider();
-        const orque = new Orque();
-        const ogre = new Ogre();
-        const enemiesFigthers:Character[]=[snake,goblin,spider,orque,ogre];
-
-        const enemy = new Fight(enemiesFigthers);
         const menu = new Menu();
-        const enemiesTeam = enemy.enemieTeam();
-        const adversaire = new FightRoom(enemiesTeam);
-
-        const alliesFigthers = menu.display();
-        adversaire.fight(enemiesTeam);
-        const battlefighter = alliesFigthers.concat(enemiesTeam)
-        const final = new Fight(battlefighter);
-        final.teamFight();
-        const aliveallies = battlefighter.filter((fighter)=> fighter.team)
-        aliveallies.forEach(allies => {
-            if(allies.res){
-                clear(true);
-                final.teamFight();
-            }else{
-                console.log('combat fini')
-            }
-        });
+        const [adversaire, enemiesTeam] =menu.generateEnemies();
+        const alliesFigthers = menu.display(); // The start of the Game + Team choice
+        adversaire.fight(enemiesTeam, alliesFigthers);// Room number + enemies meet
     }
 }
 
