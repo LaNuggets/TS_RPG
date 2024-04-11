@@ -39,7 +39,7 @@ export default class Character {
         this.attack_speed = attack_speed;
         this.special_Capacity = special_Capacity;
         this.res = res;
-        this.inventory = [];
+        
     }
     public gainHp(hpGain: number): number{
         return this.currentHp += hpGain;
