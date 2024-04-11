@@ -74,7 +74,7 @@ export default class Menu {
             return ret
         }
         if (playerResponse >= 1 && playerResponse <= 3) {
-         (playerResponse)
+         console.log('Nothing append...')
         } else {
             console.log("Enter a correct number between 1 and 3: ");
         }
